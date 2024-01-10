@@ -13,6 +13,9 @@
 		059332932B4E67620074C13A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 059332912B4E67620074C13A /* Main.storyboard */; };
 		059332952B4E67620074C13A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 059332942B4E67620074C13A /* Assets.xcassets */; };
 		059332982B4E67630074C13A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 059332962B4E67630074C13A /* LaunchScreen.storyboard */; };
+		059332A02B4E67C00074C13A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0593329F2B4E67C00074C13A /* MapViewController.swift */; };
+		059332A22B4E68160074C13A /* Assistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059332A12B4E68160074C13A /* Assistant.swift */; };
+		3F8166F5AE6B42704B406677 /* Pods_MapTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840D6292A595FCD40C4CE3DF /* Pods_MapTest.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,11 @@
 		059332942B4E67620074C13A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		059332972B4E67630074C13A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		059332992B4E67630074C13A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0593329F2B4E67C00074C13A /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		059332A12B4E68160074C13A /* Assistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assistant.swift; sourceTree = "<group>"; };
+		693034B9F75C94F5CD5C557A /* Pods-MapTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapTest.debug.xcconfig"; path = "Target Support Files/Pods-MapTest/Pods-MapTest.debug.xcconfig"; sourceTree = "<group>"; };
+		840D6292A595FCD40C4CE3DF /* Pods_MapTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7B41F1AC29564D3CEA392C1 /* Pods-MapTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapTest.release.xcconfig"; path = "Target Support Files/Pods-MapTest/Pods-MapTest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F8166F5AE6B42704B406677 /* Pods_MapTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +51,8 @@
 			children = (
 				0593328A2B4E67620074C13A /* MapTest */,
 				059332892B4E67620074C13A /* Products */,
+				D328574E6AB38F7F4E92B622 /* Pods */,
+				21DAEEA2902D97F4452C81E3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,12 +70,31 @@
 				0593328B2B4E67620074C13A /* AppDelegate.swift */,
 				0593328D2B4E67620074C13A /* SceneDelegate.swift */,
 				0593328F2B4E67620074C13A /* ViewController.swift */,
+				059332A12B4E68160074C13A /* Assistant.swift */,
+				0593329F2B4E67C00074C13A /* MapViewController.swift */,
 				059332912B4E67620074C13A /* Main.storyboard */,
 				059332942B4E67620074C13A /* Assets.xcassets */,
 				059332962B4E67630074C13A /* LaunchScreen.storyboard */,
 				059332992B4E67630074C13A /* Info.plist */,
 			);
 			path = MapTest;
+			sourceTree = "<group>";
+		};
+		21DAEEA2902D97F4452C81E3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				840D6292A595FCD40C4CE3DF /* Pods_MapTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D328574E6AB38F7F4E92B622 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				693034B9F75C94F5CD5C557A /* Pods-MapTest.debug.xcconfig */,
+				F7B41F1AC29564D3CEA392C1 /* Pods-MapTest.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +104,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0593329C2B4E67630074C13A /* Build configuration list for PBXNativeTarget "MapTest" */;
 			buildPhases = (
+				28F5C8142CCC09929210DB39 /* [CP] Check Pods Manifest.lock */,
 				059332842B4E67620074C13A /* Sources */,
 				059332852B4E67620074C13A /* Frameworks */,
 				059332862B4E67620074C13A /* Resources */,
+				A8821272BCD6A40CADD95FE6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -133,6 +165,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		28F5C8142CCC09929210DB39 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MapTest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A8821272BCD6A40CADD95FE6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MapTest/Pods-MapTest-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MapTest/Pods-MapTest-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MapTest/Pods-MapTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		059332842B4E67620074C13A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -141,6 +215,8 @@
 				059332902B4E67620074C13A /* ViewController.swift in Sources */,
 				0593328C2B4E67620074C13A /* AppDelegate.swift in Sources */,
 				0593328E2B4E67620074C13A /* SceneDelegate.swift in Sources */,
+				059332A02B4E67C00074C13A /* MapViewController.swift in Sources */,
+				059332A22B4E68160074C13A /* Assistant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,7 +279,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -266,7 +342,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -287,6 +363,7 @@
 		};
 		0593329D2B4E67630074C13A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 693034B9F75C94F5CD5C557A /* Pods-MapTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -295,11 +372,14 @@
 				DEVELOPMENT_TEAM = 3C347T67DV;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MapTest/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "사용자의 위치정보를 받아오려고 합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 위치를 받아오려고 합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -307,14 +387,18 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jusung.MapTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		0593329E2B4E67630074C13A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F7B41F1AC29564D3CEA392C1 /* Pods-MapTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -323,11 +407,14 @@
 				DEVELOPMENT_TEAM = 3C347T67DV;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MapTest/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "사용자의 위치정보를 받아오려고 합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 위치를 받아오려고 합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -335,9 +422,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jusung.MapTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
