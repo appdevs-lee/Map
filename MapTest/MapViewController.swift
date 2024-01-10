@@ -9,13 +9,20 @@ import UIKit
 import CoreLocation
 import MapKit
 import RealmSwift
+import CoreMotion
 
 final class MapViewController: UIViewController {
     
     lazy var mapView: MKMapView = {
         let mapView = MKMapView()
         mapView.showsUserLocation = true
+        if #available(iOS 16.0, *) {
+            mapView.preferredConfiguration = MKStandardMapConfiguration()
+        } else {
+            mapView.mapType = .standard
+        }
         mapView.setUserTrackingMode(.follow, animated: true)
+        mapView.setRegion(MKCoordinateRegion(center: mapView.userLocation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500), animated: true)
         mapView.delegate = self
         mapView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -31,6 +38,7 @@ final class MapViewController: UIViewController {
         return manager
     }()
     
+    let motionManager = CMMotionActivityManager()
     var previousCoordinate: CLLocationCoordinate2D?
     
     override func viewDidLoad() {
@@ -44,6 +52,7 @@ final class MapViewController: UIViewController {
         self.setSubviews()
         self.setLayouts()
         self.setPermission()
+        self.setMotion()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,7 +95,7 @@ extension MapViewController: EssentialViewMethods {
     }
     
     func setNotificationCenters() {
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(stopLocationUpdating), name: UIApplication.didEnterBackgroundNotification, object: nil)
     }
     
     func setSubviews() {
@@ -114,6 +123,27 @@ extension MapViewController: EssentialViewMethods {
         self.locationManager.requestWhenInUseAuthorization()
     }
     
+    func setMotion() {
+        self.motionManager.startActivityUpdates(to: .main) { activity in
+            guard let activity = activity else { return }
+            
+            if activity.automotive {
+                print("정지상태 해제")
+                if activity.stationary {
+                    self.locationManager.stopUpdatingLocation()
+                    
+                } else {
+                    self.locationManager.startUpdatingLocation()
+                    
+                }
+                
+            } else {
+                print("정지상태")
+                self.locationManager.stopUpdatingLocation()
+                
+            }
+        }
+    }
 }
 
 // MARK: - Extension for methods added
@@ -123,7 +153,9 @@ extension MapViewController {
 
 // MARK: - Extension for selector methods
 extension MapViewController {
-    
+    @objc func stopLocationUpdating() {
+        self.locationManager.stopUpdatingLocation()
+    }
 }
 
 // MARK: - Extension for CLLocationManagerDelegate
