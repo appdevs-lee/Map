@@ -95,7 +95,7 @@ extension MapViewController: EssentialViewMethods {
     }
     
     func setNotificationCenters() {
-        NotificationCenter.default.addObserver(self, selector: #selector(stopLocationUpdating), name: UIApplication.didEnterBackgroundNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(stopLocationUpdating), name: UIApplication.didEnterBackgroundNotification, object: nil)
     }
     
     func setSubviews() {
