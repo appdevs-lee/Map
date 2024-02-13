@@ -1,4 +1,5 @@
 PODS:
+  - KakaoMapsSDK (2.6.3)
   - Realm (10.45.3):
     - Realm/Headers (= 10.45.3)
   - Realm/Headers (10.45.3)
@@ -6,17 +7,20 @@ PODS:
     - Realm (= 10.45.3)
 
 DEPENDENCIES:
+  - KakaoMapsSDK
   - RealmSwift (~> 10)
 
 SPEC REPOS:
   trunk:
+    - KakaoMapsSDK
     - Realm
     - RealmSwift
 
 SPEC CHECKSUMS:
+  KakaoMapsSDK: 478a68bc259a4e46be1677a7afbd4a9de57ce1f1
   Realm: b277b843c7505c1e30e3a70322a24a09283e62bb
   RealmSwift: f6690053e81733801e6619eb5b39993ab76f7050
 
-PODFILE CHECKSUM: fdde4d48ba91b8cf632327103cf290d6a47296da
+PODFILE CHECKSUM: 691722aae8a8fe13c5b59ea7a588a36cebac485d
 
 COCOAPODS: 1.13.0

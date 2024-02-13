@@ -1,17 +1,14 @@
 //
-//  MapViewController.swift
+//  MapPathViewController.swift
 //  MapTest
 //
-//  Created by Awesomepia on 1/10/24.
+//  Created by Awesomepia on 2/13/24.
 //
 
 import UIKit
-import CoreLocation
 import MapKit
-import RealmSwift
-import CoreMotion
 
-final class MapViewController: UIViewController {
+final class MapPathViewController: UIViewController {
     
     lazy var mapView: MKMapView = {
         let mapView = MKMapView()
@@ -39,8 +36,12 @@ final class MapViewController: UIViewController {
     }()
     
     let mapModel = MapModel()
-    let motionManager = CMMotionActivityManager()
-    var previousCoordinate: CLLocationCoordinate2D?
+    let stations: [Station] = [
+        Station(title: "스타벅스 앞 정류장", coordinate: CLLocationCoordinate2D(latitude: 37.49960, longitude: 127.0336), subtitle: "첫 출발지입니다."),
+        Station(title: "서봉빌딩 앞 정류장", coordinate: CLLocationCoordinate2D(latitude: 37.49918, longitude: 127.0370), subtitle: "특이사항 없습니다."),
+        
+    ]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +54,8 @@ final class MapViewController: UIViewController {
         self.setSubviews()
         self.setLayouts()
         self.setPermission()
-        self.setMotion()
+        self.setData()
+        self.drawLineOnMap()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,23 +64,17 @@ final class MapViewController: UIViewController {
         self.setViewAfterTransition()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        self.locationManager.stopUpdatingLocation()
-    }
-    
     //    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
     //        return .portrait
     //    }
     
     deinit {
-        print("----------------------------------- MapViewController is disposed -----------------------------------")
+        print("----------------------------------- MapPathViewController is disposed -----------------------------------")
     }
 }
 
 // MARK: Extension for essential methods
-extension MapViewController: EssentialViewMethods {
+extension MapPathViewController: EssentialViewMethods {
     func setViewFoundation() {
         
     }
@@ -96,7 +92,7 @@ extension MapViewController: EssentialViewMethods {
     }
     
     func setNotificationCenters() {
-//        NotificationCenter.default.addObserver(self, selector: #selector(stopLocationUpdating), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        
     }
     
     func setSubviews() {
@@ -124,31 +120,71 @@ extension MapViewController: EssentialViewMethods {
         self.locationManager.requestWhenInUseAuthorization()
     }
     
-    func setMotion() {
-        self.motionManager.startActivityUpdates(to: .main) { activity in
-            guard let activity = activity else { return }
-            
-            if activity.automotive {
-                print("정지상태 해제")
-                if activity.stationary {
-                    self.locationManager.stopUpdatingLocation()
-                    
-                } else {
-                    self.locationManager.startUpdatingLocation()
-                    
-                }
-                
-            } else {
-                print("정지상태")
-                self.locationManager.stopUpdatingLocation()
-                
-            }
-        }
+    func setData() {
+        self.mapModel.deleteAll()
+        let date = self.convertDate(intoString: Date(), "yyyy-MM-dd HH:mm:ss")
+        let location1 = Location()
+        let location2 = Location()
+        let location3 = Location()
+        let location4 = Location()
+        let location5 = Location()
+        let location6 = Location()
+        
+        location1.latitude = 37.49969
+        location1.longitude = 127.0336
+        location1.date = date
+        
+        location2.latitude = 37.49989
+        location2.longitude = 127.0343
+        location2.date = date
+        
+        location3.latitude = 37.50068
+        location3.longitude = 127.0369
+        location3.date = date
+        
+        location4.latitude = 37.49937
+        location4.longitude = 127.0376
+        location4.date = date
+        
+        location5.latitude = 37.49909
+        location5.longitude = 127.0367
+        location5.date = date
+    
+        location6.latitude = 37.56992
+        location6.longitude = 126.9590
+        location6.date = date
+        
+        self.mapModel.save(data: location1)
+        self.mapModel.save(data: location2)
+        self.mapModel.save(data: location3)
+        self.mapModel.save(data: location4)
+        self.mapModel.save(data: location5)
+        self.mapModel.save(data: location6)
     }
 }
 
 // MARK: - Extension for methods added
-extension MapViewController {
+extension MapPathViewController {
+    func drawLineOnMap() {
+        var points: [CLLocationCoordinate2D] = []
+        
+        for location in self.mapModel.read() {
+            let point: CLLocationCoordinate2D
+            = CLLocationCoordinate2DMake(location.latitude, location.longitude)
+            
+            points.append(point)
+            
+            let lineDraw = MKPolyline(coordinates: points, count:points.count)
+            self.mapView.addOverlay(lineDraw)
+        }
+        
+        for station in self.stations {
+            self.mapView.addAnnotation(station)
+            
+        }
+        
+    }
+    
     // Date -> String
     func convertDate(intoString date: Date, _ dateFormat: String = "yyyy-MM-dd") -> String {
         let formatter = DateFormatter()
@@ -161,52 +197,19 @@ extension MapViewController {
 }
 
 // MARK: - Extension for selector methods
-extension MapViewController {
-    @objc func stopLocationUpdating() {
-        self.locationManager.stopUpdatingLocation()
-    }
+extension MapPathViewController {
+    
 }
 
 // MARK: - Extension for CLLocationManagerDelegate
-extension MapViewController: CLLocationManagerDelegate {
+extension MapPathViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
         
-        let latitude = location.coordinate.latitude
-        let longitude = location.coordinate.longitude
-        
-        if let previousCoordinate = self.previousCoordinate {
-            var points: [CLLocationCoordinate2D] = []
-            let point1 = CLLocationCoordinate2DMake(previousCoordinate.latitude, previousCoordinate.longitude)
-            let point2: CLLocationCoordinate2D
-            = CLLocationCoordinate2DMake(latitude, longitude)
-            
-            points.append(point1)
-            points.append(point2)
-            
-            let lineDraw = MKPolyline(coordinates: points, count:points.count)
-            self.mapView.addOverlay(lineDraw)
-            
-            let date = self.convertDate(intoString: Date(), "yyyy-MM-dd HH:mm:ss")
-            let location = Location()
-            
-            location.latitude = latitude
-            location.longitude = longitude
-            location.date = date
-            
-            self.mapModel.save(data: location)
-            for location in self.mapModel.read() {
-                print("latitude: \(location.latitude)\nlongitude: \(location.longitude)")
-            }
-            
-        }
-        
-        self.previousCoordinate = location.coordinate
     }
 }
 
 // MARK: - Extension for MKMapViewDelegate
-extension MapViewController: MKMapViewDelegate {
+extension MapPathViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         guard let polyLine = overlay as? MKPolyline else { return MKOverlayRenderer() }
         

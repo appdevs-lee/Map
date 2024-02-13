@@ -7,4 +7,5 @@ target 'MapTest' do
 
   # Pods for MapTest
   pod 'RealmSwift', '~>10'
+  pod 'KakaoMapsSDK'
 end
